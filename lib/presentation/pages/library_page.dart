@@ -36,25 +36,42 @@ class LibraryPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final takes = ref.watch(takesProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('ライブラリ'),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.sort),
-            onPressed: () {
-              // Show sort options
-            },
+    return Column(
+      children: [
+        // Header with actions
+        Container(
+          padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 8.h),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                'ライブラリ',
+                style: TextStyle(
+                  fontSize: 24.sp,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Row(
+                children: [
+                  IconButton(
+                    icon: const Icon(Icons.sort),
+                    onPressed: () {
+                      // Show sort options
+                    },
+                  ),
+                  IconButton(
+                    icon: const Icon(Icons.filter_list),
+                    onPressed: () {
+                      // Show filter options
+                    },
+                  ),
+                ],
+              ),
+            ],
           ),
-          IconButton(
-            icon: const Icon(Icons.filter_list),
-            onPressed: () {
-              // Show filter options
-            },
-          ),
-        ],
-      ),
-      body: takes.isEmpty
+        ),
+        Expanded(
+          child: takes.isEmpty
           ? _buildEmptyState()
           : ListView.builder(
               padding: EdgeInsets.all(16.w),
@@ -73,6 +90,8 @@ class LibraryPage extends ConsumerWidget {
                 );
               },
             ),
+        ),
+      ],
     );
   }
 

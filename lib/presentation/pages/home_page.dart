@@ -9,31 +9,29 @@ class HomePage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Melow',
-          style: TextStyle(
-            fontSize: 28.sp,
-            fontWeight: FontWeight.bold,
-            foreground: Paint()
-              ..shader = const LinearGradient(
-                colors: [AppColors.primary, AppColors.secondary],
-              ).createShader(
-                const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
-              ),
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-      ),
-      body: SafeArea(
-        child: SingleChildScrollView(
+    return SingleChildScrollView(
           padding: EdgeInsets.all(20.w),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // App Title
+              Center(
+                child: Text(
+                  'Melow',
+                  style: TextStyle(
+                    fontSize: 32.sp,
+                    fontWeight: FontWeight.bold,
+                    foreground: Paint()
+                      ..shader = const LinearGradient(
+                        colors: [AppColors.primary, AppColors.secondary],
+                      ).createShader(
+                        const Rect.fromLTWH(0.0, 0.0, 200.0, 70.0),
+                      ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 24.h),
+              
               // Welcome Section
               Container(
                 padding: EdgeInsets.all(20.w),
@@ -125,9 +123,7 @@ class HomePage extends ConsumerWidget {
               const RecentTakesCard(),
             ],
           ),
-        ),
-      ),
-    );
+        );
   }
 }
 

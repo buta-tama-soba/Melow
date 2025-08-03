@@ -39,12 +39,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage> with SingleTickerProvid
   Widget build(BuildContext context) {
     final lyrics = ref.watch(lyricsProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('歌詞入力'),
-        elevation: 0,
-      ),
-      body: Column(
+    return Column(
         children: [
           // Tab Bar
           Container(
@@ -146,8 +141,7 @@ class _LyricsPageState extends ConsumerState<LyricsPage> with SingleTickerProvid
             ),
           ],
         ],
-      ),
-    );
+      );
   }
 
   Widget _buildManualInput() {

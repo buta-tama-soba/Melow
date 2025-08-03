@@ -23,24 +23,7 @@ class PerformancePage extends ConsumerWidget {
     final selectedScale = ref.watch(selectedScaleProvider);
     final performanceMode = ref.watch(performanceModeProvider);
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('演奏'),
-        actions: [
-          IconButton(
-            icon: Icon(
-              isRecording ? Icons.stop_circle : Icons.fiber_manual_record,
-              color: isRecording ? AppColors.error : AppColors.primary,
-              size: 28.sp,
-            ),
-            onPressed: () {
-              ref.read(isRecordingProvider.notifier).state = !isRecording;
-            },
-          ),
-          SizedBox(width: 8.w),
-        ],
-      ),
-      body: Column(
+    return Column(
         children: [
           // Settings Panel
           Container(
@@ -59,6 +42,30 @@ class PerformancePage extends ConsumerWidget {
             ),
             child: Column(
               children: [
+                // Recording Button
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton.icon(
+                      onPressed: () {
+                        ref.read(isRecordingProvider.notifier).state = !isRecording;
+                      },
+                      icon: Icon(
+                        isRecording ? Icons.stop_circle : Icons.fiber_manual_record,
+                        color: Colors.white,
+                      ),
+                      label: Text(
+                        isRecording ? '録音停止' : '録音開始',
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: isRecording ? AppColors.error : AppColors.primary,
+                        padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 12.h),
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(height: 16.h),
                 // Tempo Control
                 Row(
                   children: [
@@ -193,8 +200,7 @@ class PerformancePage extends ConsumerWidget {
             ),
           ),
         ],
-      ),
-    );
+      );
   }
 }
 
