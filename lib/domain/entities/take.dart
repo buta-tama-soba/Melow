@@ -1,31 +1,55 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class Take {
+  final String id;
+  final String title;
+  final DateTime createdAt;
+  final int noteCount;
+  final bool isFavorite;
+  final String? lyricsId;
+  final List<Note>? notes;
+  final Map<String, dynamic>? metadata;
 
-part 'take.freezed.dart';
-part 'take.g.dart';
+  const Take({
+    required this.id,
+    required this.title,
+    required this.createdAt,
+    required this.noteCount,
+    required this.isFavorite,
+    this.lyricsId,
+    this.notes,
+    this.metadata,
+  });
 
-@freezed
-class Take with _$Take {
-  const factory Take({
-    required String id,
-    required String title,
-    required DateTime createdAt,
-    required int noteCount,
-    required bool isFavorite,
+  Take copyWith({
+    String? id,
+    String? title,
+    DateTime? createdAt,
+    int? noteCount,
+    bool? isFavorite,
     String? lyricsId,
     List<Note>? notes,
     Map<String, dynamic>? metadata,
-  }) = _Take;
-
-  factory Take.fromJson(Map<String, dynamic> json) => _$TakeFromJson(json);
+  }) {
+    return Take(
+      id: id ?? this.id,
+      title: title ?? this.title,
+      createdAt: createdAt ?? this.createdAt,
+      noteCount: noteCount ?? this.noteCount,
+      isFavorite: isFavorite ?? this.isFavorite,
+      lyricsId: lyricsId ?? this.lyricsId,
+      notes: notes ?? this.notes,
+      metadata: metadata ?? this.metadata,
+    );
+  }
 }
 
-@freezed
-class Note with _$Note {
-  const factory Note({
-    required String note,
-    required double duration,
-    required double timing,
-  }) = _Note;
+class Note {
+  final String note;
+  final double duration;
+  final double timing;
 
-  factory Note.fromJson(Map<String, dynamic> json) => _$NoteFromJson(json);
+  const Note({
+    required this.note,
+    required this.duration,
+    required this.timing,
+  });
 }

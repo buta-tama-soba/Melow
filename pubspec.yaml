@@ -55,7 +55,7 @@ dependencies:
 
   # Audio
   audioplayers: ^6.1.0
-  flutter_midi: ^2.0.5
+  flutter_midi: ^1.1.0
 
   # Charts & Visualization
   fl_chart: ^0.68.0
